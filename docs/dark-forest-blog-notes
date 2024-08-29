@@ -1,0 +1,49 @@
+okay so ive been going thru the dark forest blog (https://blog.zkga.me/) and this is my current thinking,
+
+1. burner wallets ~ this is great since i can drip energy at some constant rate to this wallet.. maybe every main chain proof submission.. this would also greatly improve ux (df adopted this in v0.4 based on feedback from v0.3).. i would do it a little differently tho, let the user login with web3auth, that generated a uuid which is registered with a contract.. every burner is then assigned to that uuid in the contract so it's easy to drip.. maybe a simple struct like `struct Burner { address brdcst, boolean active, uint64 parent, boolean flag1, boolean flag2, boolean flag3 }`.. this makes the Burner only one word long..
+
+2. safe zones and danger zones ~ this would help with the periodic proof submissions and the fog of war in general.. also with eventual event drops (see 4 below)..
+
+3. local compute translate to energy drip rate ~ one way to think about this is that the energy in the world is expanding.. so energy you consume in real life translates to energy in virtual life.. this also feeds into the goal of this being somewhat meta.. now i need a reason to use some form of proof of work locally.. maybe i could just use proof generation as compute for now.. one thing to be careful of here is to enure players are rewarded for time spent as opposed to money spent here, ie, someone with a more powerful machine should not be able to (significantly) outcompete someone with a weaker machine.. a possible gaming scenario where pay-to-win can be possible.. (btw, i love web3 so much cuz where else can you so minutely design incentive structures?!)
+
+4. chain reorg ~ so, their blog says that sometimes an event may be dropped due to a chain re-org, and this works because as other players are submitting proofs, the game state can change.. this also means that before every action the game state would be fetched.. i could do something like how videos are kind of streamed in that from one frame to the next, only differentials are sent, so if a certain part of the frame remains dark (ie, pixel values dont change), do not transmit that information.. 
+
+5. defined world / map ~ the world must be finite, limited, and well defined for this game to actually work.. a completely open world game is not possible yet.. not until an engine is built, which is out of scope for this hackathon..
+
+6. nfts ~ v0.5 included discoverable nfts in the game.. my thinking is more along the lines of nfts being used for skills and items.. a way to keep track of who can do what.. this may break the fog-of-war to an extent.. but, there are two main advantages, one, items can be traded with other players as they form factions to battle against monsters / zombies and to survive in general.. two, this can easily be extended to avatars and other personalization stuff.. and a secret third advantage is that in a future project i want to be able to create adventure games where items can be moved across different adventures..
+
+7. whitelisting / access control ~ this is likely needed.. some system / service where keys can be verified.. another option is soul bound player nfts which are assigned on a first come first serve basis upto a certain number..
+
+8. no injected web3 wallets ~ for smaller scope, only support burners.. if needed wallets can be triggered to deposit funds into the burners.. need some way to reconcile this with energy economics.. 
+
+9. exporting ~ so, df does do some form of exporting so browsers can be switched.. this is probably a good idea, but perhaps should be out of scope for mvp.. definitely the next thing if not in mvp though as with fog-of-war, some form of user verification will be needed and this should be easily exportable..
+
+10. plugins, scripts, etc. ~ definitely a must have.. out of scope for mvp..
+
+11. lazy S-curves and explorer fast forwarding growth curves ~ okay so this is good.. i was thinking along these lines, but effectively, spots on the map have some energy / activity happening there between player visits.. when a player lands on a certain spot, they may quickly get up to speed, and in the process also update game state by submitting a proof.. one aside, might need to have a small bubble around each player and have players switch between different modes, like explore, communicate, battle.. think minecraft (explore) + pokemon (spawning for battles).. this way, chances of actions being dropped because someone else submitted first are lowered.. now, how can i include gen-ai backed untitled-antagonists (the monsters/zombies; i finally have a name for them) here?
+
+12. game client doing a lot of processing ~ so one feature of df is that the contract stores very little info and the client processes blockchain data and simulates / fast forwards actions.. this could feed into the energy translation talked about in 3 above.. also helpful to keep the contract light..
+
+13. (aside) location lore ~ so locations can definitely have lore surrounding it, but it would also be fun to read lore of stuff that happened here before the player got there.. 
+
+14. subgraph ~ this can be a great middleware to store more structured data informed by the contract and also events.. but since not a sponsor, out of scope for this hackathon..
+
+15. blockchain pseudorandomness ~ so this is definitely an issue since nothing is really random on chain.. one solution is ofcourse chainlink's vrf, though need to look at that deeper.. but another solution could be using chainlink oracles and Lit Protocol's compute actions.. hits two prize categories..
+
+16. minting planet artifacts ~ this could be a potential way of how the players can acquire skills or obtain items.. this also helps with compute translation (see 3 above)
+
+17. procedurally-generated universe ~ this is probably the way to go for now.. not exactly sure how to implement this yet..
+
+18. Interactive AI nfts ~ okay, so df v0.6 uses these with gpt-3 to talk to artifacts to learn about universe.. this is kind of like making npcs? we could add personalities and have them reward or punish player based on niceness or empathy? maybe trees can talk.. actually, not a bad idea, if the story is nuclear war and man made apocalypse, talk to nature and nature can be pissed off or kind and generous.. okay, this is a definite in-scope item.. also targets galadriel.. 
+
+19. On-Chain Location Broadcasting ~ ooh i like this.. so df v0.6 allows players to broadcast coordinates every 24 hours, presumably to seed chaos.. i can spin this with starlink.. as according to the lore, starlink is the only surviving communication network and everything is happening through that.. elon did say tesla (i know starlink is spacex, but im sure ethos follows) is the forefront in making apocalyptic technology.. lol; maybe i should change the name slightly so spacex is not offended..
+
+20. spacetime rips ~ so these serve as links to the outside world, ie, mainnet to remove assets from a universe.. layerzero could help here, but not sure if i should do this in mvp.. might have to drop layerzero target.. too much work and also tough to reconcile removal of nfts from universe.. actually, maybe layerzero might still be possible if each player is running their own chain and trading is possible..
+
+21. more on mining locations while exploring ~ if going this route, like df, then one cool thing could be the ability to join forces.. ie, players can share their explorations with another.. for now, all of it, but later perhaps selected info.. and this can be made possible using xmtp.. man this game client is going to be involved af and have multiple windows huh, maybe i should do point and click and not keyboard moves for the map..
+
+22. (aside) hidden artifact idea ~ so i definitely have a lot of hopes from this project or like aspirations especially in terms of social dynamics.. one way to include them could be to note them down now and hide them in the world.. and people might find it and decide to act on it or not.. maybe if they find it, they can leave some stuff behind too.. for instance, one hope is lets say nuclear winter does come to pass, can humanity make out of it? would love to see a simulation of it.. can society rebuild say great arches? will art make a comeback? yada yada.. this is inspired from the massive activity df achieved in various rounds.. would probably need loads of community tho, so number 10 above is crucial for this before this can come to fruition..
+
+23. procedural generation SNARKs ~ what in the world are these? sounds useful!
+
+24. nightmarket ~ a blackmarket for selling coordinates (ie, gaining an edge in fog of war).. might be fun to look into, but not needed for mvp tbh

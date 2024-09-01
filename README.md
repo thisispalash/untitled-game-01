@@ -21,3 +21,13 @@
 >
 > </details>
 
+## The Lore
+> [See more](./docs/lore.md)
+
+## Gameplay
+> [See more](./docs/gameplay.md)
+
+## Technologies Used
+> Sponsors of hackathon marked with \*
+
+## Futures

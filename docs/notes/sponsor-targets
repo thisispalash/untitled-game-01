@@ -1,0 +1,32 @@
+## Web3Auth
+
+- Login provider
+- burner wallet generation
+- rpc calls via eth-provider
+
+## XMTP
+
+- Messaging users
+- In chat transfers
+
+## Chainlink
+
+- VRF
+- Oracles (combined with Lit protocol's actions)
+
+## Lit Protocol
+
+- decryptAndCombine (for passing AI keys)
+
+## Galadriel
+
+- NPC Agents
+
+## MINA
+
+- zkVM / rollup architecture
+- Main game state
+
+## LayerZero
+
+- Send assets to other players

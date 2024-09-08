@@ -60,8 +60,13 @@ export default function Web3AuthProvider({ children }: any) {
   }
 
   const signInWithDiscord = async () => {
-    if (!uuid) { await pregenerateWallet(); }
-    window.location.href = `https://discord.com/oauth2/authorize?client_id=${process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Flogin%2Fdiscord&scope=identify+email&state=${uuid}`;
+    /// @dev flaw in pregeneration as each reload would generate a new uuid, 
+    ///  and hence, new wallet. Need some way to store uuid in some db and 
+    ///  associate with discord id.
+    // if (!uuid) { await pregenerateWallet(); }
+    // window.location.href = `https://discord.com/oauth2/authorize?client_id=${process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Flogin%2Fdiscord&scope=identify+email&state=${uuid}`;
+    
+    window.location.href = `https://discord.com/oauth2/authorize?client_id=${process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Flogin%2Fdiscord&scope=identify+email`;
   }
 
   const login = async (token: string) => {
